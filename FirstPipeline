@@ -1,0 +1,32 @@
+pipeline {
+    agent any
+    tools{
+        maven "maven3.9.9"
+    }
+    stages {
+        stage('Stage1: Clone the project') {
+            steps {
+                echo 'Clone the project from github'
+                git branch: 'main', url: 'https://github.com/gbhure/mvn-project.git'
+                //git branch: 'main', credentialsId: '18a84635-84a7-4134-806e-b086da91ae65', url: 'https://github.com/gbhure/demo-21dec.git'
+            }
+        }
+        stage('Stage2: Build the project') {
+            steps {
+                echo 'Build'
+                sh 'ls'
+                sh 'mvn clean install'
+            }
+        }
+        stage('Stage3: Test the project') {
+            steps {
+                echo 'Test'
+            }
+        }
+        stage('Stage4: Deploy the project') {
+            steps {
+                echo 'Deploy'
+            }
+        }
+    }
+}
